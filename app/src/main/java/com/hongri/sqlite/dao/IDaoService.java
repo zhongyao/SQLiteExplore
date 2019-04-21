@@ -30,6 +30,13 @@ public interface IDaoService extends IService {
     void saveBlob(String PersonId, ArticleInfo blobInfo, DataCallback<Boolean> callback);
 
     /**
+     * 删
+     * @param personId
+     * @param callback
+     */
+    void delete(String personId,DataCallback<Boolean> callback);
+
+    /**
      * 基本常用类型查询
      *
      * @param personId
@@ -46,6 +53,12 @@ public interface IDaoService extends IService {
      * @return
      */
     void queryBlob(String personId, DataCallback<ArticleInfo> callback);
+
+    /**
+     * 改
+     * @param personId
+     */
+    void update(String personId);
 
     /**
      * 数据库更新迁移(新旧表名字不一样)：

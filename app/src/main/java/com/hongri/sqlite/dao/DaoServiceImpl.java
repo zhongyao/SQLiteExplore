@@ -28,6 +28,7 @@ import static com.hongri.sqlite.dao.DaoConst.VERSION;
 /**
  * @author zhongyao
  * @date 2019/4/16
+ * 数据库基本操作类
  */
 
 public class DaoServiceImpl implements IDaoService {
@@ -45,24 +46,56 @@ public class DaoServiceImpl implements IDaoService {
         mOpenHelper = new MySQLiteOpenHelper(context, DB_NAME, null, VERSION);
     }
 
+    /**
+     * 一、插入数据库
+     *
+     * @param personId
+     * @param name
+     * @param gender
+     * @param callback
+     */
     @Override
     public void save(String personId, String name, String gender, DataCallback<Boolean> callback) {
+        boolean ret;
         mDatabase = mOpenHelper.getWritableDatabase();
 
         try {
+
+            /**
+             * 方法1、BEGIN
+             */
             //ContentValues values = new ContentValues();
             //values.put(PERSON_ID, personId);
             //values.put(NAME, name);
             //values.put(GENDER, gender);
+            ////参数1、表名 2、空列名(一般为null--表示该列存储的值为NULL类型) 3、存储有列名称与列值的map
             //long result = mDatabase.insert(TABLE_NAME, null, values);
+            //if (result == -1) {
+            //    ret = false;
+            //} else {
+            //    ret = true;
+            //}
+            /**
+             * END
+             */
+
+            /**
+             * 方法2、BEGIN
+             * "INSERT INTO person_info(person_id, name, gender) values('888', "yao", "male")"
+             */
             saveSql = "INSERT INTO " + TABLE_NAME + " (" + PERSON_ID + ", " + NAME + ", " + GENDER + ") " + " values ("
                 + "'" + personId + "', " + "'" + name + "', " + "'" + gender + "'" + " )";
             mDatabase.execSQL(saveSql);
-            callback.onDataCallback(true);
+            ret = true;
+            /**
+             * END
+             */
 
+            callback.onDataCallback(ret);
         } catch (Exception e) {
             e.printStackTrace();
-            callback.onDataCallback(false);
+            ret = false;
+            callback.onDataCallback(ret);
         }
     }
 
@@ -124,6 +157,41 @@ public class DaoServiceImpl implements IDaoService {
 
     }
 
+    /**
+     * 二、删
+     */
+    @Override
+    public void delete(String personId, DataCallback<Boolean> callback) {
+
+        /**
+         * 方法1、BEGIN
+         */
+        //如果 whereClause 传null，那么将删除所有的行
+        String whereClause = PERSON_ID + "=?";
+        String[] whereArgs = new String[] {personId};
+        //返回类型为被删除的行数
+        int numberRows = mDatabase.delete(TABLE_NAME, whereClause, whereArgs);
+        /**
+         * END
+         */
+
+        /**
+         * 方法2、BEGIN
+         * "DELETE FROM person_info WHERE person_id = 888"
+         */
+        String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE " + PERSON_ID + "=" + personId;
+        mDatabase.execSQL(deleteSql);
+        /**
+         * END
+         */
+    }
+
+    /**
+     * 三、查
+     *
+     * @param personId
+     * @param callback
+     */
     @Override
     public void query(String personId, DataCallback<PersonInfo> callback) {
         mDatabase = mOpenHelper.getReadableDatabase();
@@ -131,6 +199,17 @@ public class DaoServiceImpl implements IDaoService {
         Cursor cursor = null;
         PersonInfo personInfo = null;
         try {
+            /**
+             * 参数说明：
+             * table:表名称
+             * columns:列名称数组（传null将返回所有的列）
+             * selection:条件语句，相当于WHERE（传null将返回所有的行）
+             * selectionArgs:条件语句，参数数组
+             * groupBy:分组列
+             * having:分组条件
+             * orderBy:排序列
+             *
+             */
             cursor = mDatabase.query(TABLE_NAME, new String[] {PERSON_ID, NAME, GENDER}, PERSON_ID + " =?",
                 new String[] {personId},
                 null, null, null);
@@ -175,6 +254,34 @@ public class DaoServiceImpl implements IDaoService {
             callback.onDataCallback(articleInfo);
             cursor.close();
         }
+    }
+
+    /**
+     * 四、改
+     */
+    @Override
+    public void update(String personId) {
+        /**
+         * 方法1、BEGIN
+         */
+        ContentValues values = new ContentValues();
+        values.put(NAME, "hongri");
+        values.put(GENDER, "female");
+        mDatabase.update(TABLE_NAME, values, PERSON_ID + "=?", new String[] {personId});
+        /**
+         * END
+         */
+
+        /**
+         * 方法2、BEGIN
+         * "UPDATE person_info SET name=hongri, gender=female WHERE person_id=888"
+         */
+
+        String sql = "UPDATE " + TABLE_NAME + " SET " + NAME + "=" + "hongri" + " WHERE " + PERSON_ID + "="
+            + personId;
+        /**
+         * END
+         */
     }
 
     /**
