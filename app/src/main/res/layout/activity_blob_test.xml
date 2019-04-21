@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hongri.sqlite.MainActivity">
+
+    <EditText
+        android:id="@+id/personIdEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="请输入personId"
+        android:text="33"/>
+
+    <EditText
+        android:id="@+id/nameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入name"
+        android:text="yao"/>
+
+    <EditText
+        android:id="@+id/genderEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入gender"
+        android:text="female"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="存储"/>
+
+    <Button
+        android:id="@+id/btnGet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取"/>
+
+    <Button
+        android:id="@+id/btnBlobSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="存储BLOB"/>
+
+    <Button
+        android:id="@+id/btnBlobGet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取BLOB"/>
+
+    <Button
+        android:id="@+id/btnDBUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="数据库迁移"/>
+
+</LinearLayout>
