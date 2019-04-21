@@ -279,6 +279,7 @@ public class DaoServiceImpl implements IDaoService {
 
         String sql = "UPDATE " + TABLE_NAME + " SET " + NAME + "=" + "hongri" + " WHERE " + PERSON_ID + "="
             + personId;
+        mDatabase.execSQL(sql);
         /**
          * END
          */
