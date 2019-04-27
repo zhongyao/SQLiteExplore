@@ -1,6 +1,7 @@
 package com.hongri.sqlite;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn1 = findViewById(R.id.btn1);
         btn1.setOnClickListener(this);
+        btn1.setBackgroundColor(Color.BLACK);
     }
 
     @Override
