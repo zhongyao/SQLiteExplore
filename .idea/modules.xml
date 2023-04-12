@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SQLiteExplore.iml" filepath="$PROJECT_DIR$/SQLiteExplore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SQLiteExplore.iml" filepath="$PROJECT_DIR$/.idea/modules/SQLiteExplore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SQLiteExplore.app.unitTest.iml" />
     </modules>
   </component>
 </project>
